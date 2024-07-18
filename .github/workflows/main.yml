@@ -7,7 +7,7 @@ on:
 
 jobs:
   selenium-test:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+    runs-on: windows-latest  # Use the latest Windows environment
 
     steps:
       - name: Checkout code
@@ -23,10 +23,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt  # Ensure Selenium and pytest are in requirements.txt
           # Download and install ChromeDriver
-          wget https://chromedriver.storage.googleapis.com/99.0.4844.51/chromedriver_linux64.zip  # Adjust version as needed
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
+          Invoke-WebRequest https://chromedriver.storage.googleapis.com/99.0.4844.51/chromedriver_win32.zip -OutFile chromedriver.zip  # Adjust version as needed
+          Expand-Archive chromedriver.zip -DestinationPath $env:ProgramFiles\ChromeDriver\
+          [Environment]::SetEnvironmentVariable("PATH", "$env:ProgramFiles\ChromeDriver;$env:PATH", [EnvironmentVariableTarget]::Machine)
 
       - name: Run Selenium tests
         run: |
