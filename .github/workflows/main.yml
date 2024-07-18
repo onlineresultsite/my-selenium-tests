@@ -25,4 +25,4 @@ jobs:
 
       - name: Run Selenium tests
         run: |
-          python test.py  # Replace with the command to run your Selenium test script
+          pytest test.py  # Replace with the command to run your Selenium test script
