@@ -81,3 +81,8 @@ jobs:
         with:
           name: Test Results
           path: $GITHUB_WORKSPACE/test_results.xlsx
+
+      - name: Print GITHUB_WORKSPACE
+        run: |
+          echo "The value of GITHUB_WORKSPACE is: $GITHUB_WORKSPACE"
+
