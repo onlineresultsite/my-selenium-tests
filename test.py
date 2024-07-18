@@ -17,7 +17,7 @@ row_counter = 1
 
 # URL, username, and password
 URL = "http://13.53.206.233:8000/login/"  # Replace with your login URL
-USERNAME = "newtest"
+USERNAME = "aka"
 PASSWORD = "akTR@300"
 
 # Login function
