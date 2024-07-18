@@ -3,26 +3,31 @@ name: Selenium Tests
 on:
   push:
     branches:
-      - main  # Adjust the branch name as needed
+      - main  # Replace with your branch name
 
 jobs:
-  test:
-    runs-on: ubuntu-latest  # Choose the operating system (Linux, macOS, Windows) where you want to run tests
+  selenium-test:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Checkout your repository code
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # Specify your Python version
+          python-version: 3.12  # Specify Python version
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.txt  # Ensure Selenium and pytest are in requirements.txt
+          # Download and install ChromeDriver
+          wget https://chromedriver.storage.googleapis.com/99.0.4844.51/chromedriver_linux64.zip  # Adjust version as needed
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Run Selenium tests
         run: |
-          pytest test.py  # Replace with the command to run your Selenium test script
+          pytest test.py  # Replace with your test script name
