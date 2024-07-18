@@ -73,16 +73,13 @@ jobs:
         run: |
           python save_results_to_excel.py  # Save results to Excel file
           # Example: Copy results to artifact folder
-          cp test_results.xlsx $GITHUB_WORKSPACE/test_results.xlsx  # Copy to artifact folder
+          cp test_results.xlsx c:/test_results.xlsx  # Copy to artifact folder
 
       - name: Upload Test Results
         if: success()
         uses: actions/upload-artifact@v2
         with:
           name: Test Results
-          path: $GITHUB_WORKSPACE/test_results.xlsx
+          path: c:/test_results.xlsx
 
-      - name: Print GITHUB_WORKSPACE
-        run: |
-          echo "The value of GITHUB_WORKSPACE is: $GITHUB_WORKSPACE"
 
