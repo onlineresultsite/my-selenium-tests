@@ -1,3 +1,38 @@
+# name: Selenium Tests
+
+# on:
+#   push:
+#     branches:
+#       - main  # Replace with your branch name
+
+# jobs:
+#   selenium-test:
+#     runs-on: windows-latest  # Use the latest Windows environment
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2  # Checkout your repository code
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: 3.12  # Specify Python version
+
+#       - name: Install dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install openpyxl
+#           pip install -r requirements.txt  # Ensure Selenium and pytest are in requirements.txt
+#           # Download and install ChromeDriver
+#           Invoke-WebRequest https://chromedriver.storage.googleapis.com/99.0.4844.51/chromedriver_win32.zip -OutFile chromedriver.zip  # Adjust version as needed
+#           Expand-Archive chromedriver.zip -DestinationPath $env:ProgramFiles\ChromeDriver\
+#           [Environment]::SetEnvironmentVariable("PATH", "$env:ProgramFiles\ChromeDriver;$env:PATH", [EnvironmentVariableTarget]::Machine)
+
+#       - name: Run Selenium tests
+#         run: |
+#           pytest test.py  # Replace with your test script name
+
+
 name: Selenium Tests
 
 on:
@@ -31,3 +66,18 @@ jobs:
       - name: Run Selenium tests
         run: |
           pytest test.py  # Replace with your test script name
+          python save_results_to_excel.py  # Save test results to Excel after running tests
+
+      - name: Save results to Excel
+        if: success()
+        run: |
+          python save_results_to_excel.py  # Save results to Excel file
+          # Example: Copy results to artifact folder
+          cp test_results.xlsx $GITHUB_WORKSPACE/test_results.xlsx  # Copy to artifact folder
+
+      - name: Upload Test Results
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Results
+          path: $GITHUB_WORKSPACE/test_results.xlsx
