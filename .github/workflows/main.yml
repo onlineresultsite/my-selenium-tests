@@ -63,23 +63,14 @@ jobs:
           Expand-Archive chromedriver.zip -DestinationPath $env:ProgramFiles\ChromeDriver\
           [Environment]::SetEnvironmentVariable("PATH", "$env:ProgramFiles\ChromeDriver;$env:PATH", [EnvironmentVariableTarget]::Machine)
 
+      - name: Upload local directory
+        uses: actions/upload-artifact@v2
+        with:
+          name: Local Directory  # Name of the artifact
+          path: E:\workspace  
+
       - name: Run Selenium tests
         run: |
           pytest test.py  # Replace with your test script name
           python save_results_to_excel.py  # Save test results to Excel after running tests
-
-      - name: Save results to Excel
-        if: success()
-        run: |
-          python save_results_to_excel.py  # Save results to Excel file
-          # Example: Copy results to artifact folder
-          cp test_results.xlsx c:/test_results.xlsx  # Copy to artifact folder
-# fhgfdhgf
-      - name: Upload Test Results
-        if: success()
-        uses: actions/upload-artifact@v2
-        with:
-          name: Test Results
-          path: c:/test_results.xlsx
-
 
