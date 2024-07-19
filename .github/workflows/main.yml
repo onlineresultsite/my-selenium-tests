@@ -67,19 +67,19 @@ jobs:
         run: |
           pytest test.py  # Replace with your test script name
 
-      # - name: Save results to Excel
-      #   if: success()
-      #   run: |
-      #     python save_results_to_excel.py  # Execute save_results_to_excel.py after running tests
-      #     cp test_results.xlsx $GITHUB_WORKSPACE/test_results.xlsx  # Copy results to artifact folder
+      - name: Save results to Excel
+        if: success()
+        run: |
+          python save_results_to_excel.py  # Execute save_results_to_excel.py after running tests
+          cp test_results.xlsx $GITHUB_WORKSPACE/test_results.xlsx  # Copy results to artifact folder
 
-      # - name: Upload Test Results
-      #   if: success()
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: Test Results
-      #     path: $GITHUB_WORKSPACE/test_results.xlsx
+      - name: Upload Test Results
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Results
+          path: $GITHUB_WORKSPACE/test_results.xlsx
 
-      # - name: Print GITHUB_WORKSPACE
-      #   run: |
-      #     echo "The value of GITHUB_WORKSPACE is: $GITHUB_WORKSPACE"
+      - name: Print GITHUB_WORKSPACE
+        run: |
+          echo "The value of GITHUB_WORKSPACE is: $GITHUB_WORKSPACE"
