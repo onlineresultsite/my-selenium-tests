@@ -109,7 +109,7 @@ def login(driver, username, password, otp1, otp2, otp3, otp4, role):
    
 
    # cfo dashboard diffrent and anlytic all change
-     ("10001", "123456", "3", "3", "3", "3", 'Admin'),        # collection report, todays performance,
+     ("10001", "123456", "1", "1", "1", "1", 'Admin'),        # collection report, todays performance,
     #  ("2000", "123456", "1", "1", "1", "1", 'GM'),       # collection report, todays performance, SBL closed loans, SBL DPD Report present ho and collection R me applied Enach not, active enach not present na ho, account r sbl intrest present na ho
     #  ("4444", "123456", "1", "1", "1", "1", 'CFO'),      # collection report, todays performance, collection R me applied enach no present na ho
     #  ("1000001", "123456", "1", "1", "1", "1", 'Sales'),     # only Collection not show and Collection
