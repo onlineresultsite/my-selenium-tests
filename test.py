@@ -51,7 +51,7 @@ def login(driver, username, password):
         sheet[f"A{row_counter}"] = "Dashboard"
         sheet[f"B{row_counter}"] = "Success"
 
-        # Save the Excel file
+        # Save the Exce
         wb.save("test_results.xlsx")
 
         # Print a message
