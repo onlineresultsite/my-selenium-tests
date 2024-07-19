@@ -49,7 +49,7 @@ def login(driver, username, password):
         global row_counter
         row_counter += 1
         sheet[f"A{row_counter}"] = "Dashboard"
-        sheet[f"B{row_counter}"] = "Success"
+        sheet[f"B{row_counter}"] = "Success122"
 
         # Save the Exce
         wb.save("test_results.xlsx")
