@@ -1,0 +1,17 @@
+import pandas as pd
+
+# Assuming you have test results stored in some format, for example, a dictionary
+test_results = {
+    'Test Case': ['test_case_1', 'test_case_2', 'test_case_3'],
+    'Status': ['Passed', 'Failed', 'Passed'],
+    'Execution Time (s)': [1.23, 2.34, 1.56],
+    'Error Message': [None, 'AssertionError', None]
+}
+
+# Convert the dictionary to a pandas DataFrame
+df = pd.DataFrame(test_results)
+
+# Save the DataFrame to an Excel file
+df.to_excel('test_results.xlsx', index=False)
+
+print("Test results saved to test_results.xlsx")
