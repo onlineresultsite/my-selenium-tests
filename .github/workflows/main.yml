@@ -170,12 +170,15 @@
 name: Selenium Tests
 
 on:
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to run the tests on'
-        required: true
-        default: 'main'
+  repository_dispatch:
+    types: [selenium-tests]
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       branch:
+#         description: 'Branch to run the tests on'
+#         required: true
+#         default: 'main'
 
 jobs:
   selenium-test:
