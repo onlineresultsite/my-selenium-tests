@@ -146,10 +146,25 @@ def test_consent_request(setup, username, password, otp1, otp2, otp3, otp4, role
             calculate_insurance_button_present = False
             row_counter += 1
             sheet[f"A{row_counter}"] = "Calculate Insurance Button"
-            sheet[f"B{row_counter}"] = "Available"            
+            sheet[f"B{row_counter}"] = "Not Available"            
             print("calculate insurance button not found")
 
-        
+        try:
+            recalculate_insurance_button = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '//button[contains(@class, "MuiButtonBase-root") and contains(@class, "MuiButton-root") and contains(@class, "MuiButton-text")]//span[text()="Recalculate Insurance"]'))
+            )
+            row_counter += 1
+            sheet[f"A{row_counter}"] = "Recalculate Insurance Button"
+            sheet[f"B{row_counter}"] = "Available"
+        except:
+            recalculate_insurance_button_present = False
+            row_counter += 1
+            sheet[f"A{row_counter}"] = "Recalculate Insurance Button"
+            sheet[f"B{row_counter}"] = "Not Available"            
+            print("recalculate insurance button not found")      
+
+
+
 
    
     except Exception as e:
